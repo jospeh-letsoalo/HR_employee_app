@@ -43,8 +43,8 @@ const EmployeeDetails = (props) => {
 
    // console.log(employee)
     try {
-          await axios.post('http://localhost:1234/api/saveEmployee', { employee: employee });// for development
-          //const response = await axios.post('/api/saveEmployee', { employee: employee });// for deployment
+          //await axios.post('http://localhost:1234/api/saveEmployee', { employee: employee });// for development
+          const response = await axios.post('/api/saveEmployee', { employee: employee });// for deployment
          props.setViewEmployee(false)
         
       } catch (error) {

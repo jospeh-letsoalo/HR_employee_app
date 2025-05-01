@@ -1,11 +1,20 @@
 
 const mysql = require('mysql');
-
-const connection = mysql.createConnection({
+//this is for xampp mysql
+/*const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',                // Replace with your MySQL username
   password: '',   // Replace with your MySQL password
   database: 'hico_assessment'  // Make sure this DB exists
+});*/
+
+// MySQL Connection Pool
+const connection = mysql.createPool({
+  host: 'localhost',
+  user: 'root',
+  password: 'admin',
+  database: 'hico_assessment',
+  port: 3307
 });
 
 connection.connect((err) => {

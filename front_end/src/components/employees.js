@@ -17,8 +17,8 @@ const Employees = () => {
   const getEmployees= async()=>{
     try {
       
-       const response = await axios.get(`http://localhost:1234/api/getEmployees`); // for development
-        //const response = await axios.get(`/api/shorten/${shortCode}/stats`); // for deployment
+       //const response = await axios.get(`http://localhost:1234/api/getEmployees`); // for development
+        const response = await axios.get('/api/getEmployees'); // for deployment
         //console.log(response.data)
         setEmployees(response.data);
       } catch (error) {
