@@ -27,6 +27,18 @@ const EmployeeDetails = (props) => {
         setSalutation(props.employeeObj.salutation)
         setGender(props.employeeObj.employee_gender)
         setColor(props.employeeObj.employee_profile_color)
+    }else{
+        setSalary('')
+        setEmployeeNo('')
+        setName('')
+        setLastName('')
+        setSalutation('')
+        setGender('')
+        setColor('Default')
+        setNameErr(false)
+        setLastErr(false)
+        setSalErr(false)
+        setEmpErr(false)
     }
  
   }, [props.employeeObj]);
