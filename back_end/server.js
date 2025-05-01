@@ -19,7 +19,7 @@ initDB();
 // Routes
 // Handle every other route with index.html, which allows HTML5 history routing
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'UI/build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../front_end/build', 'index.html'));
 });
 app.use('/api', urlRoutes);
 
