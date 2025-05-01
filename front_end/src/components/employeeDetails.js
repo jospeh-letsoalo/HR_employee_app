@@ -102,6 +102,7 @@ const EmployeeDetails = (props) => {
   };
   const handleChangeSelect=(e)=>{
    const selectedValue = e.target.value;
+   console.log(selectedValue)
     setSalutation(selectedValue);
     if(selectedValue==='Mr.'){
         setSalErr(false)
@@ -187,8 +188,8 @@ const EmployeeDetails = (props) => {
                             </Form.Label>
                             <Col sm={8}>
                             <Form.Select aria-label="Salutation" value={salutation} onChange={handleChangeSelect}>
-                                <option vlaue=''> Select Field</option>
-                                <option vlaue='Dr.'> Dr</option>
+                                <option value=''> Select Field</option>
+                               <option value='Dr.'>Dr</option>
                                 <option value="Mr.">Mr</option>
                                 <option value="Ms.">Ms</option>
                                 <option value="Mrs.">Mrs</option>
