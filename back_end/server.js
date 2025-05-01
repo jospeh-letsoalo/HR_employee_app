@@ -10,20 +10,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Serve static files from the React build folder//
-//app.use(express.static(path.resolve(__dirname, 'UI/build')));
-
 // Initialize Database
 initDB();
 
 // Serve React static files
-app.use(express.static(path.join(__dirname, '../front_end/build')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 // Routes
 // Handle every other route with index.html, which allows HTML5 history routing
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '../front_end/build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.use('/api', urlRoutes);
