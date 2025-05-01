@@ -18,7 +18,7 @@ const EmployeeDetails = (props) => {
   const [empErr,setEmpErr] = useState(false)
 
   useEffect(() => {
-    if(JSON.stringify(props.employeeObj)!='{}'){
+    if(JSON.stringify(props.employeeObj)!=='{}'){
         console.log(props.employeeObj)
         handleChangeSalary(props.employeeObj.gross_salary.toString())
         handleChangeEmployee(props.employeeObj.employee_number.toString())
@@ -43,7 +43,7 @@ const EmployeeDetails = (props) => {
 
    // console.log(employee)
     try {
-          const response = await axios.post('http://localhost:1234/api/saveEmployee', { employee: employee });// for development
+          await axios.post('http://localhost:1234/api/saveEmployee', { employee: employee });// for development
           //const response = await axios.post('/api/saveEmployee', { employee: employee });// for deployment
          props.setViewEmployee(false)
         
@@ -56,16 +56,16 @@ const EmployeeDetails = (props) => {
     
     // Allow only letters and spaces
     const filteredValue = value.replace(/[^a-zA-Z ]/g, '');
-    if(type=='name'){
+    if(type==='name'){
         setName(filteredValue)
-        if(filteredValue==''){
+        if(filteredValue===''){
             setNameErr(true)
         }else{
             setNameErr(false)
         }
-    }if(type=='last'){
+    }if(type==='last'){
         setLastName(filteredValue)
-        if(filteredValue==''){
+        if(filteredValue===''){
             setLastErr(true)
         }else{
             setLastErr(false)
@@ -92,7 +92,7 @@ const EmployeeDetails = (props) => {
   const handleChangeEmployee = (value) => {
     // Remove all non-digit characters
     let digitsOnly = value.replace(/\D/g, '');
-    if(digitsOnly==''){
+    if(digitsOnly===''){
         setEmpErr(true)
     }else{
         setEmpErr(false)
@@ -103,13 +103,13 @@ const EmployeeDetails = (props) => {
   const handleChangeSelect=(e)=>{
    const selectedValue = e.target.value;
     setSalutation(selectedValue);
-    if(selectedValue=='Mr.'){
+    if(selectedValue==='Mr.'){
         setSalErr(false)
         setGender('Male')
-    }else if(selectedValue=='Mrs.' || selectedValue=='Ms.'){
+    }else if(selectedValue==='Mrs.' || selectedValue==='Ms.'){
         setSalErr(false)
         setGender('Female')
-    }else if(selectedValue=='Mx.' || selectedValue=='Dr.'){
+    }else if(selectedValue==='Mx.' || selectedValue==='Dr.'){
         setSalErr(false)
         setGender('Unspecified')
     }

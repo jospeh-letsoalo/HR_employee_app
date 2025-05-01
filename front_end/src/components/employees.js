@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './style.css'
 import axios from 'axios';
-import { Button, Container,Form, Row, Col } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import EmployeeDetails from './employeeDetails';
 
-const Employees = ({ shortUrl }) => {
+const Employees = () => {
     const [employees,setEmployees] = useState([])
     const [viewEmployee,setViewEmployee] = useState(false)
     const [employeeObj,setEmployeeObj] = useState({})
@@ -62,7 +62,7 @@ const Employees = ({ shortUrl }) => {
                     </th>
                 </tr>
             </thead>
-            {JSON.stringify(employees)!='{}'&&<>
+            {JSON.stringify(employees)!=='{}'&&<>
             <tbody>
             {employees.map((emp)=>{
                 return (
