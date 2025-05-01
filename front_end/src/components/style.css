@@ -1,0 +1,28 @@
+.employee-header{
+    width: 100%;
+    position: relative;
+}
+#add-employee{
+    position: absolute;
+    right:0;
+    top:0;
+}
+#save-employee{
+    position: absolute;
+    right:0;
+    top:0;
+    margin: 5px;
+}
+#employee-information{
+    border: 1px solid black;
+    max-width: 100%;
+    border-radius: 5px;
+    position: relative;
+    padding: 10px;
+}
+.error-message{
+    color: red;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+    font-size: smaller;
+}
