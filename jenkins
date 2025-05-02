@@ -1,0 +1,101 @@
+pipeline {
+    agent any
+
+    tools {
+        nodejs "node" // Make sure Node.js is configured in Jenkins Global Tool Configuration
+    }
+
+    stages {
+        // Stage 1: Checkout Git repo
+        stage('Checkout Repository') {
+            steps {
+                echo 'Cloning repository...'
+                git branch: 'main',
+                     url: 'https://github.com/jospeh-letsoalo/HR_employee_app.git'
+            }
+        }
+
+        // Stage 2: Install Dependencies
+        stage('Install Dependencies') {
+            parallel {
+                stage('React App Dependencies') {
+                    steps {
+                        bat """
+                            cd front_end && npm install
+                        """
+                    }
+                }
+
+                stage('Node Server Dependencies') {
+                    steps {
+                        bat """
+                            cd back_end && npm install
+                        """
+                    }
+                }
+            }
+        }
+
+        // Stage 3: Fix ESLint Issues Automatically
+        stage('Fix ESLint Warnings') {
+            steps {
+                bat """
+                    cd front_end
+                    npx eslint --fix src/**/*.js
+                """
+            }
+        }
+
+        // Stage 4: Build React App
+        stage('Build React App') {
+            steps {
+                bat """
+                    cd front_end
+                    npm run build
+                """
+                bat "dir front_end\\build"
+                archiveArtifacts artifacts: "front_end\\build\\*", allowEmptyArchive: false
+            }
+        }
+
+        // Stage 5: Copy Build to Backend Public Folder
+        stage('Copy Build to Express') {
+            steps {
+                bat """
+                    xcopy /Y /E /I front_end\\build back_end\\public
+                """
+            }
+        }
+        
+        
+        // Stage 5: Set Up MySQL Database
+        stage('Setup MySQL DB') {
+            steps {
+                echo 'Setting up MySQL database...'
+                bat """
+                    cd back_end
+                    node database.js
+                """
+            }
+        }
+
+        // Stage 6: Start Node Server
+        stage('Start Node Server') {
+            steps {
+                bat """
+                    cd back_end
+                    node server.js
+                """
+            }
+        }
+    }
+
+    post {
+        success {
+            slackSend channel: '#deployments', message: '🚀 Peanut Butter Payroll CI succeeded'
+        }
+        failure {
+            slackSend channel: '#deployments', message: '🚨 Peanut Butter Payroll CI failed'
+        }
+    }
+}
